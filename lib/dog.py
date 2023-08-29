@@ -39,13 +39,9 @@ class Dog:
         CONN.commit()
 
     @classmethod
-    def create(cls, name, breed):
-        sql = """
-            INSERT INTO dogs (name, breed)
-            VALUES (?, ?)
-        """
-        CURSOR.execute(sql, (name, breed))
-        new_dog_id = CURSOR.lastrowid
-        CONN.commit()
-
-        return cls(new_dog_id, name, breed)
+    def create(cls,name,breed):
+        dog = cls(name,breed)
+        dog.save()
+        return dog
+    
+    def new_from_db():
